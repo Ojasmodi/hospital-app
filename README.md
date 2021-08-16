@@ -1,1 +1,1 @@
-Time given was not sufficient ot develop the application.
+Time given was not sufficient to develop the application.
