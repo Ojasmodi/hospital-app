@@ -1,0 +1,6 @@
+{
+    "status": true,
+    "authToken": "dummyTokenWillBeDifferentForAllUsers",
+    "userName": "app-user",
+    "userType": "app-user"
+}

@@ -1,0 +1,33 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="row p-0 m-2 mt-4">
+        <!-- <div class="col-sm-5">
+            <img class="img-responsive" src="./../../../assets/login.png" height="80%" width="150%" />
+        </div> -->
+        <div class="col-sm-8 p-4 border mat-elevation-z8">
+            <h2 class="form-signin-heading">Sign In</h2>
+            <br>
+            <span class="text-info font-weight-bold">Email" </span>
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input type="email" class="input-group input-sm mb-3" class="form-control" formControlName="email" placeholder="Email address">
+            <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched)" class="text-danger">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+            <br>
+            <span class="text-info font-weight-bold">Password </span>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" class="input-group input-sm mb-3" class="form-control" formControlName="password" placeholder="Password">
+            <div *ngIf="f.password.errors && (f.password.dirty || f.password.touched)" class="text-danger">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be atleast 8 characters long</div>
+            </div>
+            <br>
+            <div class="form-group">
+                <button [disabled]="!signUpForm.valid" type="submit" class="btn btn-md mat-elevation-z8 btn-success">Sign In</button>
+            </div>
+
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</form>
+<ngx-spinner></ngx-spinner>

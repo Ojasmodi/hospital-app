@@ -1,0 +1,6 @@
+{
+    "status": true,
+    "authToken": "dummyTokenWillBeDifferentForAllUsers",
+    "userName": "Admin",
+    "userType": "admin"
+}
