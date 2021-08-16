@@ -5,59 +5,61 @@
             <br>
             <span class="text-info font-weight-bold">Name </span>
 
-            <input type="email" class="input-group input-sm mb-3" class="form-control" formControlName="email" placeholder="Email address">
-            <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched)" class="text-danger">
-                <div *ngIf="f.email.errors.required">Email is required</div>
-                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            <input type="text" class="input-group input-sm mb-3" class="form-control" formControlName="name" placeholder="Name">
+            <div *ngIf="f.name.errors && (f.name.dirty || f.name.touched)" class="text-danger">
+                <div *ngIf="f.name.errors.required">Name is required</div>
+                <div *ngIf="f.name.errors.maxlength || f.name.errors.pattern">Name must be valid</div>
             </div>
             <br>
 
 
-            <span class="text-info font-weight-bold">Gender </span>
-            <input type="password" class="input-group input-sm mb-3" class="form-control" formControlName="password" placeholder="Password">
-            <div *ngIf="f.password.errors && (f.password.dirty || f.password.touched)" class="text-danger">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be atleast 8 characters long</div>
+            <span class="text-info font-weight-bold mb-2">Gender </span>
+            <div>
+                <span class="mr-2">
+                    <input id="male" type="radio" value="male" name="gender" formControlName="gender">
+                    <label for="male">Male</label>
+                </span>
+
+                <span>
+                    <input id="female" type="radio" value="female" name="gender" formControlName="gender">
+                    <label for="female">Female</label>
+                </span>
+
+                <div *ngIf="f.gender.errors && (f.gender.dirty || f.gender.touched)" class="text-danger">
+                    <div *ngIf="f.gender.errors.required">Gender is required</div>
+                </div>
             </div>
             <br>
 
             <span class="text-info font-weight-bold">Age </span>
-            <input type="password" class="input-group input-sm mb-3" class="form-control" formControlName="password" placeholder="Password">
-            <div *ngIf="f.password.errors && (f.password.dirty || f.password.touched)" class="text-danger">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be atleast 8 characters long</div>
+            <input type="number" class="input-group input-sm mb-3" class="form-control" formControlName="age" placeholder="Age">
+            <div *ngIf="f.age.errors && (f.age.dirty || f.age.touched)" class="text-danger">
+                <div *ngIf="f.age.errors.required">Age is required</div>
+                <div *ngIf="f.age.errors.max || f.age.errors.min">Age must be valid</div>
             </div>
             <br>
 
             <span class="text-info font-weight-bold">Address </span>
-            <input type="password" class="input-group input-sm mb-3" class="form-control" formControlName="password" placeholder="Password">
-            <div *ngIf="f.password.errors && (f.password.dirty || f.password.touched)" class="text-danger">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be atleast 8 characters long</div>
+            <input type="text" class="input-group input-sm mb-3" class="form-control" formControlName="address" placeholder="Address">
+            <div *ngIf="f.address.errors && (f.address.dirty || f.address.touched)" class="text-danger">
+                <div *ngIf="f.address.errors.required">Address is required</div>
+                <div *ngIf="f.address.errors.maxlength || f.address.errors.pattern">Address must be valid</div>
             </div>
             <br>
 
             <span class="text-info font-weight-bold">City </span>
-            <input type="password" class="input-group input-sm mb-3" class="form-control" formControlName="password" placeholder="Password">
-            <div *ngIf="f.password.errors && (f.password.dirty || f.password.touched)" class="text-danger">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be atleast 8 characters long</div>
+            <input type="text" class="input-group input-sm mb-3" class="form-control" formControlName="city" placeholder="City">
+            <div *ngIf="f.city.errors && (f.city.dirty || f.city.touched)" class="text-danger">
+                <div *ngIf="f.city.errors.required">City is required</div>
+                <div *ngIf="f.city.errors.pattern">City must be valid</div>
             </div>
             <br>
 
             <span class="text-info font-weight-bold">Mobile no. </span>
-            <input type="password" class="input-group input-sm mb-3" class="form-control" formControlName="password" placeholder="Password">
-            <div *ngIf="f.password.errors && (f.password.dirty || f.password.touched)" class="text-danger">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be atleast 8 characters long</div>
-            </div>
-            <br>
-
-            <span class="text-info font-weight-bold">Password </span>
-            <input type="password" class="input-group input-sm mb-3" class="form-control" formControlName="password" placeholder="Password">
-            <div *ngIf="f.password.errors && (f.password.dirty || f.password.touched)" class="text-danger">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be atleast 8 characters long</div>
+            <input type="number" class="input-group input-sm mb-3" class="form-control" formControlName="phoneNumber" placeholder="Phone number">
+            <div *ngIf="f.phoneNumber.errors && (f.phoneNumber.dirty || f.phoneNumber.touched)" class="text-danger">
+                <div *ngIf="f.phoneNumber.errors.required">Phone no. is required</div>
+                <div *ngIf="f.phoneNumber.errors.minlength || f.phoneNumber.errors.maxlength">Phone no. must be 10 digits long</div>
             </div>
             <br>
 
@@ -72,20 +74,21 @@
 
             <span class="text-info font-weight-bold">Symptoms</span>
 
-            <input type="email" class="input-group input-sm mb-3" class="form-control" formControlName="email" placeholder="Email address">
-            <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched)" class="text-danger">
-                <div *ngIf="f.email.errors.required">Email is required</div>
-                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            <input type="email" class="input-group input-sm mb-3" class="form-control" formControlName="symptoms" placeholder="Symptoms">
+            <div *ngIf="f.symptoms.errors && (f.symptoms.dirty || f.symptoms.touched)" class="text-danger">
+                <div *ngIf="f.symptoms.errors.required">Symptoms are required</div>
             </div>
             <br>
 
-
-
             <div class="form-group">
-                <button [disabled]="!signUpForm.valid" type="submit" class="btn btn-md mat-elevation-z8 btn-success">Sign In</button>
+                <button [disabled]="!signUpForm.valid" type="submit" class="btn btn-md mat-elevation-z8 btn-success">Register patient</button>
+                <a routerLink='/patient/home' class="btn btn-danger ml-3">Cancel</a>
             </div>
 
         </div>
         <div class="col-sm-3"></div>
     </div>
 </form>
+
+
+<!----------------Required some more time to complete this application-->

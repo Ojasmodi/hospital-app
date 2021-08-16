@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
 import { CommunicationService } from 'src/app/core/communication.service';
 
 import { UserService } from '../user.service';
@@ -21,7 +20,8 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private communicationService: CommunicationService
+    private communicationService: CommunicationService,
+    private toastr: ToastrService
   ) {
     this.signUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,7 +36,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.userService.isUserAuthorised()) {
+      let userType = this.userService.getUserType();
+      if (userType != 'app-user') {
+        this.route.navigateByUrl('/patient/home');
+      } else {
+        this.route.navigateByUrl('/patient/view-all');
+      }
+    }
+  }
 
   // convenient getter for easy access to form fields
   get f() {
@@ -53,7 +62,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         this.spinner.hide();
         if (response.status) {
-          //this.toastr.info('Login successful.');
+          this.toastr.info('Login successful.');
           localStorage.setItem('authToken', response.authToken);
           localStorage.setItem('username', response.userName);
           localStorage.setItem('userType', response.userType);
@@ -69,17 +78,13 @@ export class LoginComponent implements OnInit {
             this.route.navigate(['/patient/home']);
           }
         } else {
-          //this.toastr.error('Username or password is wrong.');
+          this.toastr.error('Username or password is wrong.');
         }
       },
       (err) => {
         this.spinner.hide();
-        //this.toastr.error('Some error occured.');
+        this.toastr.error('Some error occured.');
       }
     );
-  }
-
-  ngOnDestroy() {
-    //this.sessionLangObservable.unsubscribe();
   }
 }

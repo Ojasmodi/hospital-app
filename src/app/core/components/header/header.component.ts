@@ -14,31 +14,34 @@ import { UserService } from 'src/app/user/user.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   isUserLoggedIn: boolean = false;
   user = { userName: '' };
+  communicatonSubs!: Subscription;
 
   constructor(
-    // private toastr: ToastrService,
+    private toastr: ToastrService,
     private userService: UserService,
     private router: Router,
     private communicationService: CommunicationService
   ) {}
 
   ngOnInit(): void {
-    //this.user.userName = localStorage.getItem('username');
+    this.user.userName = localStorage.getItem('username') || '{}';
     this.isUserLoggedIn = this.userService.isUserAuthorised();
-    this.communicationService.loginData.subscribe((data: any) => {
-      this.isUserLoggedIn = data.loginStatus;
-      this.user.userName = data.username;
-    });
+    this.communicatonSubs = this.communicationService.loginData.subscribe(
+      (data: any) => {
+        this.isUserLoggedIn = data.loginStatus;
+        this.user.userName = data.username;
+      }
+    );
   }
 
   logout() {
     this.userService.logout();
     this.communicationService.setLoggedIn(false);
-    //this.toastr.success('Logout success.');
+    this.toastr.success('Logout success.');
     this.router.navigateByUrl('/');
   }
 
   ngOnDestroy() {
-    //this.subscription.unsubscribe();
+    this.communicatonSubs.unsubscribe();
   }
 }

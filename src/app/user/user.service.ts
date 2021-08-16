@@ -18,7 +18,7 @@ export class UserService {
     return localStorage.getItem('authToken') ? true : false;
   }
 
-  getUserStatus() {
+  getUserType() {
     return localStorage.getItem('userType');
   }
 
@@ -43,6 +43,8 @@ export class UserService {
   }
 
   logout() {
-    localStorage.clear();
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('username');
   }
 }

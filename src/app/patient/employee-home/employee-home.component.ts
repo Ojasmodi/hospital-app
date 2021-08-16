@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-employee-home',
@@ -6,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee-home.component.less'],
 })
 export class EmployeeHomeComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private toastr: ToastrService,
+    private userService: UserService,
+    private route: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let userType = this.userService.getUserType();
+    if (userType != 'app-user') {
+      this.toastr.warning('Access-denied');
+      this.route.navigateByUrl('/patient/view-all');
+    }
+  }
 }
